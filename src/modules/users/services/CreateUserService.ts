@@ -19,11 +19,7 @@ class CreateUserService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({
-    name,
-    email,
-    password,
-  }: IRequest): Promise<Omit<User, 'password'>> {
+  public async execute({ name, email, password }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {

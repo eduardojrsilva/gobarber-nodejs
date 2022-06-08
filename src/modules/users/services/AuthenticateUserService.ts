@@ -14,7 +14,7 @@ interface IRequest {
 }
 
 interface IResponse {
-  user: Omit<User, 'password'>;
+  user: User;
   token: string;
 }
 
@@ -45,17 +45,7 @@ class AuthenticateUserService {
       expiresIn,
     });
 
-    return {
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        avatar: user.avatar,
-        created_at: user.created_at,
-        updated_at: user.updated_at,
-      },
-      token,
-    };
+    return { user, token };
   }
 }
 
